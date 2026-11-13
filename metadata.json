@@ -1,0 +1,6 @@
+{
+  "name": "Marmitaria Sabor da Vila - Venda Direta MEI",
+  "description": "Cardápio Relâmpago e Checkout Direto para MEIs com pagamento via Pix sem taxas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

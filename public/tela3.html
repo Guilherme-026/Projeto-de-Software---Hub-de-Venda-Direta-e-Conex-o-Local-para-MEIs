@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Tela 3 — Alertas e Resultados: Mural de Turnos/SOS e Validação Presencial
+      por PIN (Visão do Entregador)
+    </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family:
+          "Plus Jakarta Sans",
+          system-ui,
+          -apple-system,
+          sans-serif;
+        background-color: #f3f4f6;
+        color: #09090b;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-[#F3F4F6] text-[#09090B] flex flex-col">
+    <main
+      class="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8 flex flex-col space-y-6"
+      role="region"
+      aria-label="Mural de Turnos/SOS e Validação Presencial por PIN"
+    >
+      <!-- 1. Cabeçalho do Entregador -->
+      <header
+        class="bg-white border-2 border-[#09090B] rounded-2xl p-4 sm:p-5 shadow-xs flex items-center justify-between gap-3"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="w-11 h-11 rounded-2xl bg-[#09090B] text-white flex items-center justify-center shrink-0 border-2 border-[#09090B]"
+          >
+            <svg
+              class="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+            >
+              <circle cx="18.5" cy="17.5" r="3.5" />
+              <circle cx="5.5" cy="17.5" r="3.5" />
+              <circle cx="15" cy="5" r="1" />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 17.5V14l-3-3 4-3 2 3h2"
+              />
+            </svg>
+          </div>
+          <div class="leading-tight">
+            <h1
+              class="text-base sm:text-lg font-black text-[#09090B] tracking-tight"
+            >
+              Rafael Oliveira • Motoboy Local
+            </h1>
+            <div
+              class="inline-flex items-center gap-1.5 mt-0.5 px-3 py-0.5 rounded-full bg-emerald-100 border border-emerald-500 text-[#065F46]"
+              role="status"
+            >
+              <svg
+                class="w-3.5 h-3.5 text-[#047857]"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                stroke-width="2.5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+                />
+              </svg>
+              <span class="text-xs font-black text-[#047857]">
+                0 Strikes • Conta Ativa
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          aria-label="Sair da conta de entregador"
+          class="min-h-[48px] min-w-[48px] px-4 rounded-xl text-sm font-bold text-[#09090B] bg-[#F3F4F6] border-2 border-[#09090B] hover:bg-[#E5E7EB] active:bg-[#D1D5DB] flex items-center justify-center gap-1.5 transition-colors focus:outline-none focus:ring-2 focus:ring-[#09090B]"
+        >
+          <svg
+            class="w-4 h-4 text-[#09090B]"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"
+            />
+            <polyline points="16 17 21 12 16 7" />
+            <line x1="21" y1="12" x2="9" y2="12" />
+          </svg>
+          <span>Sair</span>
+        </button>
+      </header>
+
+      <!-- Grid Responsivo para Leitura Clara Sob Luz Solar Direta -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+        <!-- Coluna 1: Alerta SOS Aceito + Trava de Segurança por PIN -->
+        <div class="space-y-6">
+          <!-- 2. Cartão de Alerta SOS Aceito (Topo) -->
+          <section
+            aria-labelledby="sos-aceito-heading"
+            class="bg-white border-2 border-[#B91C1C] rounded-2xl p-4 sm:p-5 shadow-sm space-y-3.5"
+          >
+            <h2 id="sos-aceito-heading" class="sr-only">
+              Cartão de Alerta SOS Aceito
+            </h2>
+
+            <div
+              class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-100 border-2 border-[#B91C1C] text-[#991B1B]"
+              role="status"
+            >
+              <svg
+                class="w-4 h-4 text-[#B91C1C] stroke-[2.5] animate-pulse"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 2v3m0 14v3M4.93 4.93l2.12 2.12m9.9 9.9 2.12 2.12M2 12h3m14 0h3M4.93 19.07l2.12-2.12m9.9-9.9 2.12-2.12M12 7a5 5 0 0 0-5 5v3h10v-3a5 5 0 0 0-5-5Z"
+                />
+              </svg>
+              <span class="text-xs sm:text-sm font-black text-[#991B1B]">
+                Chamado SOS Local • 1,8 km de você
+              </span>
+            </div>
+
+            <div class="space-y-1 pt-1 border-t border-[#E5E7EB]">
+              <p class="text-lg font-black text-[#09090B] leading-tight">
+                Marmitaria Sabor da Vila
+              </p>
+              <p
+                class="text-sm font-bold text-[#374151] flex items-center gap-1.5"
+              >
+                <svg
+                  class="w-4 h-4 text-[#B91C1C] shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"
+                  />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                <span>Rua das Palmeiras, 310 - Vila Nova</span>
+              </p>
+            </div>
+
+            <div class="bg-[#FEF2F2] border-2 border-red-200 rounded-xl p-3.5">
+              <span
+                class="text-xs font-extrabold text-[#991B1B] uppercase tracking-wider block mb-0.5"
+              >
+                Remuneração Garantida
+              </span>
+              <p class="text-base font-black text-[#09090B] leading-snug">
+                Diária: R$ 65,00 (Regra 50/50: R$ 32,50 na chegada + R$ 32,50 no
+                fim)
+              </p>
+            </div>
+          </section>
+
+          <!-- 3. Seção de Trava de Segurança Presencial (Validação por PIN) -->
+          <section
+            aria-labelledby="pin-val-heading"
+            class="bg-white border-2 border-[#09090B] rounded-2xl p-4 sm:p-5 shadow-sm space-y-3.5"
+          >
+            <h2 id="pin-val-heading" class="sr-only">
+              Trava de Segurança Presencial
+            </h2>
+
+            <form class="space-y-3.5" onsubmit="event.preventDefault()">
+              <label
+                for="pin-input"
+                class="block text-base font-extrabold text-[#09090B] leading-snug"
+              >
+                Digite o PIN de 4 dígitos informado no balcão *
+              </label>
+
+              <div>
+                <input
+                  id="pin-input"
+                  type="text"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                  maxlength="4"
+                  required
+                  value="4829"
+                  class="w-full min-h-[56px] h-14 bg-[#F3F4F6] border-2 border-[#09090B] rounded-xl text-center font-mono text-[24px] font-black tracking-[0.4em] text-[#09090B] focus:bg-white focus:outline-none focus:ring-4 focus:ring-emerald-300 transition-all select-all"
+                  aria-label="Código PIN de 4 dígitos"
+                />
+              </div>
+
+              <button
+                type="submit"
+                class="w-full min-h-[52px] h-[52px] rounded-xl font-black text-base text-white bg-[#047857] hover:bg-[#065F46] active:bg-[#064E3B] flex items-center justify-center gap-2 shadow-md transition-all active:scale-[0.99] focus:outline-none focus:ring-4 focus:ring-emerald-300"
+              >
+                <svg
+                  class="w-5 h-5 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  stroke-width="2.5"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M7 11V7a5 5 0 0 1 9.9-1M5 11h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2Z"
+                  />
+                </svg>
+                <span>Validar PIN e Iniciar Turno</span>
+              </button>
+            </form>
+          </section>
+        </div>
+
+        <!-- Coluna 2: Painel de Resultados e Acompanhamento -->
+        <div class="space-y-6">
+          <section
+            aria-labelledby="status-operacao-heading"
+            class="bg-white border-2 border-[#09090B] rounded-2xl p-4 sm:p-5 shadow-sm space-y-4"
+          >
+            <div
+              class="flex items-center justify-between border-b-2 border-[#E5E7EB] pb-3"
+            >
+              <h2
+                id="status-operacao-heading"
+                class="text-lg font-black text-[#09090B]"
+              >
+                Status Atual da Operação
+              </h2>
+              <span
+                class="w-3 h-3 rounded-full bg-[#047857] animate-ping"
+              ></span>
+            </div>
+
+            <div
+              class="inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-emerald-100 border-2 border-emerald-600 text-[#065F46] w-full"
+              role="status"
+            >
+              <svg
+                class="w-5 h-5 text-[#047857] stroke-[2.5] shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                />
+              </svg>
+              <span class="text-xs sm:text-sm font-black text-[#047857]">
+                Turno em Andamento • Presença Confirmada
+              </span>
+            </div>
+
+            <div
+              class="bg-[#F3F4F6] border-2 border-[#D1D5DB] rounded-xl p-4 space-y-1.5"
+            >
+              <div
+                class="flex items-center gap-1.5 text-xs font-black text-[#047857] uppercase tracking-wider"
+              >
+                <svg
+                  class="w-4 h-4 text-[#047857]"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                >
+                  <rect width="20" height="12" x="2" y="6" rx="2" />
+                  <circle cx="12" cy="12" r="2" />
+                  <path d="M6 12h.01M18 12h.01" />
+                </svg>
+                <span>Pagamento Instantâneo MEI</span>
+              </div>
+              <p class="text-base font-black text-[#09090B] leading-snug">
+                1ª Parcela Pix (50% — R$ 32,50) Liberada
+              </p>
+              <p class="text-xs font-bold text-[#374151]">
+                Chave Pix cadastrada:
+                <span class="font-mono text-[#09090B]"
+                  >rafael.entregas@exemplo.com</span
+                >
+              </p>
+            </div>
+
+            <div
+              class="bg-white border-2 border-[#09090B] rounded-xl p-4 flex items-center justify-between"
+            >
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-11 h-11 rounded-xl bg-[#09090B] text-white flex items-center justify-center font-bold"
+                >
+                  <svg
+                    class="w-6 h-6 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m16 16 2 2 4-4"
+                    />
+                    <path
+                      d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14"
+                    />
+                    <path d="m3.3 7 8.7 5 8.7-5M12 22V12" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-base font-black text-[#09090B]">
+                    Entregas Realizadas neste Turno: 3
+                  </p>
+                  <p class="text-xs font-bold text-[#4B5563]">
+                    Média de 18 min por entrega
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              class="w-full min-h-[48px] h-12 rounded-xl font-black text-base text-[#09090B] bg-white border-2 border-[#09090B] hover:bg-[#F3F4F6] active:bg-[#E5E7EB] flex items-center justify-center gap-2 shadow-xs transition-colors focus:outline-none focus:ring-4 focus:ring-gray-300"
+            >
+              <svg
+                class="w-5 h-5 text-[#09090B]"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9 11l3 3L22 4"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"
+                />
+              </svg>
+              <span>Encerrar Turno e Solicitar 2ª Parcela</span>
+            </button>
+          </section>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
