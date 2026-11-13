@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr, Field, ConfigDict
+from pydantic import BaseModel, Field, ConfigDict
 from typing import Optional, List
 from datetime import datetime
 
@@ -9,7 +9,7 @@ from datetime import datetime
 
 class EstabelecimentoBase(BaseModel):
     nome_fantasia: str = Field(..., min_length=2, max_length=120)
-    email_login: EmailStr
+    email_login: str = Field(..., min_length=5, max_length=120, pattern=r"^[\w\.-]+@[\w\.-]+\.\w+$")
     chave_pix: str = Field(..., min_length=5, max_length=100)
     endereco_base: str = Field(..., min_length=5, max_length=255)
     latitude: Optional[float] = None
